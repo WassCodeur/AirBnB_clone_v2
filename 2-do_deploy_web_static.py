@@ -17,10 +17,10 @@ def do_deploy(archive_path):
     """
     try:
         put(archive_path, '/tmp/')
-        run("tar -xvzf /tmp/{}\
+        sudo("tar -xvzf /tmp/{}\
                 -c /data/web_static/releases/".format(archive_path))
-        run("rm  /tmp/{}".format(archive_path))
-        run("ln -sf /data/web_statis/releases/ /data/web_static/current")
+        sudo("rm  /tmp/{}".format(archive_path))
+        sudo("ln -sf /data/web_statis/releases/ /data/web_static/current")
         return True
     except ValueError:
         return False
