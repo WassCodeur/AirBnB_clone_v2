@@ -8,7 +8,16 @@ env.hosts = ['localhost']
 
 
 def do_pack():
-    """ Create archive """
+    """
+    This function allow to create an archive of our web_static.
+
+    Parameters: no parameters
+
+    Return:
+    archive path if the everything is okay.
+
+    None if something went wronget
+    """
     try:
 
         current = datetime.now().strftime('%Y%m%d%H%M%S')
