@@ -18,9 +18,9 @@ def do_deploy(archive_path):
     try:
         put(archive_path, '/tmp/')
         sudo("tar -xvzf /tmp/{}\
-                -c /data/web_static/releases/".format(archive_path))
+                -C /data/web_static/releases/".format(archive_path))
         sudo("rm  /tmp/{}".format(archive_path))
-        sudo("ln -sf /data/web_statis/releases/ /data/web_static/current")
+        sudo("ln -sf /data/web_static/releases/ /data/web_static/current")
         return True
-    except ValueError:
+    except Exception:
         return False
