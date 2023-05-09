@@ -18,6 +18,5 @@ do_pack():
         size = os.path.getsize(archive)
         print("web_static packed: {} -> {}Bytes".format(archive, size))
         return archive
-    except:
-
-           return None
+    except ValueError:
+        return None
