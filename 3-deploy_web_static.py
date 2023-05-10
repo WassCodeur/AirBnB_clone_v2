@@ -2,31 +2,26 @@
 from fabric.api import *
 from datetime import datetime
 import os
+do_pack = __import__('1-pack_web_static').do_pack
 
 env.hosts = ['54.165.47.201', '54.175.138.0']
 
 
-def do_pack():
+def do_deploy():
     """
-    function that generate archive of my web_static content folder.
+    function to deploy
 
-    Parameters:
-    None
+    parameters:
+    none
 
-    return:
-    the generated archive path if everything is okay
-    None if something went wrong
+    return :
+    True if everything is okay else return False
     """
-    try:
-        current = datetime.now().strftime('%Y%m%d%H%M%S')
-        archive_path = "versions/web_static_{}.tgz".format(current)
-        local("mkdir -p versions")
-        local("tar -cvzf {} web_static".format(archive_path))
-        size = os.path.getsize(archive_path)
-        print("web_static packed: {} -> {}Bytes".format(archive_path, size))
-        return archive_path
-    except Exception:
-        return None
+    archive_path = do_pack()
+    if os.path.exists(archive_path):
+        return (do_deploy(archive_pat))
+    else:
+        return False
 
 
 def do_deploy(archive_path):
@@ -37,11 +32,9 @@ def do_deploy(archive_path):
     (str) archive_path
 
     returns:
-    (bool) True if everything is okay
-    (bool) False if something went wrong
+    (bool) True if everything is okay else False
     """
     try:
-
         archive_path_a = archive_path.split("versions/")
         path_without_dir = "".join(archive_path_a)
         archive_path_ext = path_without_dir.split(".tgz")
@@ -62,24 +55,3 @@ def do_deploy(archive_path):
         return True
     except Exception:
         return False
-
-
-def do_deploy():
-    """
-    fonction that deploy web_static
-    call:
-    do_pack
-    do_deploy(archive_path)
-
-    parameters:
-    None
-
-    return:
-    False if no archive has been created
-    do_deploy value
-    """
-    archive_path = do_pack()
-    if archive_path is None:
-        return False
-    else:
-        return do_deploy(archive_path)
