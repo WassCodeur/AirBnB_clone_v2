@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 from fabric.api import *
+from datetime import datetime
+import os
 
 env.hosts = ['54.165.47.201', '54.175.138.0']
 
@@ -38,3 +40,26 @@ def do_deploy(archive_path):
         return True
     except Exception:
         return False
+
+
+def do_pack():
+    """
+    function that generate archive .tgz from the content of web_static folder.
+
+    Parameters:
+    None
+
+    return:
+    archive_path if everything is okay
+    None if something went wrong
+    """
+    try:
+        current = datetime.now().strftime('%Y%m%d%H%M%S')
+        archive = "versions/web_static_{}.tgz".format(current)
+        local("mkdir -p versions")
+        local("tar -cvzf {} web_static".format(archive))
+        size = os.path.getsize(archive)
+        print("Web_static packed: {} -> {}Bytes".format(archive, size))
+        return archive
+    except Exception:
+        return None
