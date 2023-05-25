@@ -8,11 +8,11 @@ def hello_hbnb():
     """
     Entry point - hello_hbnb
 
-    parameter : non
+    parameter : none
 
     return : hello HBNB!
     """
-    return "hello HBNB!"
+    return "Hello HBNB!"
 
 
 @app.route('/hbnb', strict_slashes=False)

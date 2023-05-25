@@ -12,7 +12,7 @@ def hello_hbnb():
 
     return : hello HBNB!
     """
-    return "hello HBNB!"
+    return "Hello HBNB!"
 
 
 @app.route('/hbnb', strict_slashes=False)
@@ -73,6 +73,7 @@ def html_template(n):
     return: 5-number.html, n
     """
     return render_template('5-number.html', n=n)
+    
 
 
 if __name__ == '__main__':

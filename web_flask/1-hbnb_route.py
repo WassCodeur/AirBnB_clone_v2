@@ -10,7 +10,7 @@ def hello_hbnb():
 
     parameters : None
 
-    return : hello HBNB!
+    return : Hello HBNB!
     """
     return "Hello HBNB!"
 
