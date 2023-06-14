@@ -79,9 +79,9 @@ def html_template(n):
     return: 5-number.html, n
     """
     return render_template('5-number.html', n=n)
-    
 
-@app.route('/number_odd_or_even/<int:n>' strict_slashes=False)
+
+@app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
 def number_odd_or_even(n):
     """
     display text
@@ -90,11 +90,11 @@ def number_odd_or_even(n):
         int n
     returns HTML file
     """
-    if n%2 == 0:
+    if n % 2 == 0:
         desc = 'even'
     else:
         desc = 'odd'
-    return render_template('6-number_odd_or_even.py', n=n, desc=desc)
+    return render_template('6-number_odd_or_even.html', n=n, desc=desc)
 
 
 if __name__ == '__main__':
